@@ -1,0 +1,27 @@
+{
+  "name": "socially-networked",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index",
+    "seed": "node utils/seed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brandonelliott0530/socially-networked.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brandonelliott0530/socially-networked/issues"
+  },
+  "homepage": "https://github.com/brandonelliott0530/socially-networked#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.5.4",
+    "mongoose-unique-validator": "^3.1.0"
+  }
+}
