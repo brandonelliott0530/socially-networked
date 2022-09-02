@@ -50,19 +50,14 @@ const userSchema = new Schema(
 );
 
 // Virtual to list the number of friends a user has
-userSchema
-  .virtual("friendCound")
-  .get(function () {
-    let friends = this.friends;
-    let friendsCount = 0;
-    for (let i = 0; i <= friends.length; i++) {
-      friendsCount += i;
-    }
-  })
-  .set(function (v) {
-    const totalFriends = v;
-    this.set({ totalFriends });
-  });
+userSchema.virtual("friendCound").get(function () {
+  let friends = this.friends;
+  let friendsCount = 0;
+  for (let i = 0; i <= friends.length; i++) {
+    friendsCount += i;
+  }
+  return friendsCount;
+});
 
 const User = model("user", userSchema);
 
