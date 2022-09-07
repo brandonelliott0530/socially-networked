@@ -12,9 +12,9 @@ const thoughtSchema = new Schema(
     },
     createdAt: {
       type: Date,
-      default: Date.toDateString(),
+      default: Date.now(),
     },
-    userName: { type: String, required: true },
+    username: { type: String, required: true },
     reactions: [
       {
         type: Schema.Types.ObjectId,
