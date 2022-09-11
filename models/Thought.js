@@ -1,6 +1,7 @@
 // require mongoose for setting up the schema for the user model
 const { Schema, model } = require("mongoose");
 const { ObjectId } = require("mongoose").Types;
+const reactionSchema = require("./Reaction");
 // Thought schema
 const thoughtSchema = new Schema(
   {
@@ -15,12 +16,7 @@ const thoughtSchema = new Schema(
       default: Date.now(),
     },
     username: { type: String, required: true },
-    reactions: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "reaction",
-      },
-    ],
+    reactions: [reactionSchema],
   },
   {
     toJson: {
@@ -32,12 +28,7 @@ const thoughtSchema = new Schema(
 
 // virtual to count the amount of reactions on a thought
 thoughtSchema.virtual("reactionCount").get(function () {
-  let reactions = this.reactions;
-  let reactionCount = 0;
-  for (let i = 0; i < reactions.length; i++) {
-    reactionCount += i;
-  }
-  return friendsCount;
+  return this.reactions.length;
 });
 
 const Thought = model("thought", thoughtSchema);
