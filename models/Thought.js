@@ -1,6 +1,6 @@
 // require mongoose for setting up the schema for the user model
 const { Schema, model } = require("mongoose");
-
+const { ObjectId } = require("mongoose").Types;
 // Thought schema
 const thoughtSchema = new Schema(
   {

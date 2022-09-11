@@ -1,5 +1,7 @@
 // require mongoose for setting up the schema for the user model
 const { Schema, model } = require("mongoose");
+const { ObjectId } = require("mongoose").Types;
+
 // requires the mongoose unique validator for the usernames and emails
 const uniqueValidator = require("mongoose-unique-validator");
 

@@ -1,5 +1,6 @@
 // Import the user and thought models
 const { Thought, User } = require("../models");
+const { ObjectId } = require("mongoose").Types;
 
 module.exports = {
   // Finds all of the thoughts
@@ -20,32 +21,23 @@ module.exports = {
       )
       .catch((error) => res.status(500).json(error));
   },
-  //   Creates a new application and associates it with the user passed in
+  //   Creates a new thought and associates it with the user passed in
   createThought(req, res) {
     Thought.create(req.body)
       .then((thought) => {
         return User.findOneAndUpdate(
-          { _id: req.body.userId },
-          { $addToSet: { thoughts: thought.id } },
+          { username: req.body.username },
+          { $addToSet: { thoughts: thought.body } },
           { new: true }
         );
       })
-      .then((user) =>
-        !user
-          ? res.status(404).json({
-              message: "Created new thought, but there's no user with that ID.",
-            })
-          : res.json("New thought created 💭")
-      )
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
+      .then((thought) => res.json(thought))
+      .catch((err) => res.status(500).json(err));
   },
   //   Update a user's thought
   updateThought(req, res) {
     Thought.findOneAndUpdate(
-      { _id: req.body.thoughtId },
+      { _id: req.params.thoughtId },
       { $set: req.body },
       { new: true }
     )
